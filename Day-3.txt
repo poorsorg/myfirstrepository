@@ -1,0 +1,425 @@
+Different flavors of Linux OS
+
+Ubuntu
+
+Fedora/RHEL
+
+Amazon Linux
+
+
+ansible -m package -a "name=git state=present" -b  -- IaC
+
+edureka@kmaster:~/scripts$ cat installGit.sh   --- Irrespective of Linux flavor ( Evaluate Multiple if conditions)
+
+
+
+First condition --- [ hostname == ubuntu ]; then use apt
+second condition -- [ hostname == amazon ]; then use yum
+third condition -- [ hostname == sles ] ; then use zypper
+#!/bin/bash
+
+which git
+
+
+if [ $? -eq "0" ]; then
+        echo "`git --version` - is already installed on `hostname`"
+        exit
+else
+        echo ""No git installation found --- proceeding with git installation..
+        sudo add-apt-repository --yes ppa:git-core/ppa
+        sudo apt-get update
+        sudo apt-get install -y git
+        echo "`git --version` installed successfully"
+fi
+exit
+
+Master
+
+Branches --- dev/feature/hotfix
+
+Head
+
+clone
+
+origin
+
+push
+
+pull vs fetch(Shows the differences but it will not merge)
+
+collaborator  --- Invite is accepted
+
+
+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
+
+
+email notification
+
+forking --- 
+
+
+clone --- replicate 
+$ git checkout master
+
+$ git merge new_branch
+
+OR
+
+$ git merge new_branch master
+
+
+
+
+$ git branch new_branch
+
+$ git checkout new_branch
+
+$ git branch -d new_branch
+
+$ git branch -D new_branch	
+
+
+
+
+git push -m old_branch  new_branch ---- Remote repo
+
+
+
+
+git diff   ---- ? 
+
+
+$ git diff master new_branch  --- differences between two local branches
+
+$ git diff master origin/master ---
+
+$ git diff <commit-1> <commit-2>  ----
+
+$ git diff installgit.sh   --- To view unstaged changes
+
+$ git diff --staged installgit.sh  --- To view staged changes
+
+#!/bin/bash
+
+if [ -f /etc/os-release ]; then
+        osname=`grep ID /etc/os-release| egrep -v 'VERSION_ID|ID_LIKE' | cut -d'=' -f2`
+        echo $osname
+else
+        echo "Cannot locate /etc/os-release - unable to find osname"
+        exit
+fi
+
+Git/configure/Manage   ---- Large scale
+
+Shell scripting  -- Linux/unix 
+
+
+
+if [ $osname == "ubuntu" ]; then
+        which git
+
+        if [ $? -eq "0" ]; then
+        echo "`git --version` - is already installed on `hostname`"
+        exit
+else
+        echo ""No git installation found --- proceeding with git installation..
+        sudo add-apt-repository --yes ppa:git-core/ppa
+        sudo apt-get update
+        sudo apt-get install -y git
+        echo "`git --version` installed successfully"
+fi
+exit
+
+
+
+Pull request on GitHub
+
+Abolade  -- forked my repo -- edureka-project  --- makes changes to that repo      ---- Bhasker repo(Accept it or decline)
+
+
+
+
+
+Command History of Day 3
+
+ 1389  sudo apt list --installed git
+ 1390  mkdir scripts
+ 1391  cd scripts/
+ 1392  ls
+ 1393  echo $SHELL
+ 1394  vi installGit.sh
+ 1395  ls -l /bin/bash
+ 1396  vi installGit.sh
+ 1397  which git
+ 1398  git --version
+ 1399  which git
+ 1400  git --version
+ 1401  echo $?
+ 1402  lpwd
+ 1403  echo $?
+ 1404  vi installGit.sh
+ 1405  bash installGit.sh
+ 1406  vi installGit.sh
+ 1407  bash installGit.sh
+ 1408  vi installGit.sh
+ 1409  bash installGit.sh
+ 1410  vi installGit.sh
+ 1411  cat installGit.sh
+ 1412  chmod +x installGit.sh
+ 1413  bash installGit.sh
+ 1414  cat installGit.sh
+ 1415  cat /etc/os-release
+ 1416  cat -n installGit.sh
+ 1417  cd
+ 1418  pd
+ 1419  pwd
+ 1420  ls
+ 1421  cd edureka-project/
+ 1422  ls
+ 1423  cd ..
+ 1424  cd java-project/
+ 1425  ls
+ 1426  cd ..
+ 1427  ls
+ 1428  cd edureka-project/
+ 1429  ls
+ 1430  git status
+ 1431  git log --oneline
+ 1432  git checkout -b feature
+ 1433  git log --oneline master
+ 1434  git log --oneline
+ 1435  git log --oneline master
+ 1436  git log --oneline feature
+ 1437  git status
+ 1438  git branch
+ 1439  pwd
+ 1440  ls -a
+ 1441  git log --oneline feature
+ 1442  vim hotfix
+ 1443  git dd .
+ 1444  git add .
+ 1445  git commit -m "Added hotfix in feature"
+ 1446  git log --oneline master
+ 1447  git log --oneline feature
+ 1448  git branch master
+ 1449  git checkout master
+ 1450  git log --oneline master
+ 1451  git checkout feature
+ 1452  git log --oneline feature
+ 1453  git log --oneline master
+ 1454  cd
+ 1455  mkdir hello-world
+ 1456  cd hello-world/
+ 1457  git clone https://github.com/bhasker-manikyala/hello-world-1.git
+ 1458  pwd
+ 1459  ls
+ 1460  cd hello-world-1/
+ 1461  ls -a
+ 1462  cd
+ 1463  cd edureka-project/
+ 1464  git remote -v
+ 1465  git remote add upstream "https://github.com/bhasker-manikyala/hello-world-1.git"
+ 1466  git remote -v
+ 1467  cd
+ 1468  cd hello-world/
+ 1469  pwd
+ 1470  git log --oneline
+ 1471  cd hello-world-1/
+ 1472  git log --oneline
+ 1473  cd
+ 1474  pwd ;  git clone https://github.com/bhasker-manikyala/hello-world-1.git
+ 1475  ls -l hello-world-1/
+ 1476  git branch
+ 1477  cd edureka-project/
+ 1478  ls
+ 1479  git branch
+ 1480  git checkout master
+ 1481  ls
+ 1482  git log --oneline
+ 1483  git remote -v
+ 1484  cd
+ 1485  ls
+ 1486  rm -rf edureka-project/
+ 1487  git clone https://github.com/bhasker-manikyala/edureka-project.git
+ 1488  cd edureka-project/
+ 1489  ls
+ 1490  git log --oneline
+ 1491  git branch master
+ 1492  git checkout master
+ 1493  git log --oneline
+ 1494  git branch new_branch
+ 1495  git checkout new_branch
+ 1496  touch file1.txt file.txt
+ 1497  git add . && git commit -m "Added text file"
+ 1498  git diff master new_branch
+ 1499  git log --oneline master
+ 1500  git log --oneline new_branch
+ 1501  git remote
+ 1502  git remote -v
+ 1503  git push origin new_branch
+ 1504  git remote --help
+ 1505  git remote -v
+ 1506  git remote rename origin repo1
+ 1507  git remote -v
+ 1508  git remote rm
+ 1509  git remote rm repo1
+ 1510  git remote
+ 1511  git remote -v
+ 1512  whoami
+ 1513  git help
+ 1514  git help -a
+ 1515  git remote --help
+ 1516  git status
+ 1517  git checkout master
+ 1518  git log --oneline master
+ 1519  git log --oneline new_branch
+ 1520  git diff master new_branch
+ 1521  git checkout master
+ 1522  git branch -d new_branch
+ 1523  git branch --help
+ 1524  git status
+ 1525  git branch -a
+ 1526  git branch
+ 1527  git remote -v
+ 1528  git remote
+ 1529  git remote add origin "https://github.com/bhasker-manikyala/edureka-project.git"
+ 1530  git branch
+ 1531  git branch -a
+ 1532  git remote -v
+ 1533  git branch -d new_branch
+ 1534  git log --oneline master
+1535  git log --oneline new_branch
+ 1536  git branch
+ 1537  git checkout master
+ 1538  git merge new_branch master
+ 1539  git diff master new_branch
+ 1540  git log --oneline master
+ 1541  git log --oneline new_branch
+ 1542  git branch -d new_branch
+ 1543  git branch
+ 1544  git remote -v
+ 1545  git push --help
+ 1546  git remote -v
+ 1547  git push origin --delete new_branch
+ 1548  ls
+ 1549  git status
+ 1550  git branch
+ 1551  git checkout -b new_branch
+ 1552  git branch
+ 1553  git branch --help
+ 1554  git branch
+ 1555  git branch -m new_branch old_branch
+ 1556  git branch
+ 1557  git push origin old_branch
+ 1558  pwd
+ 1559  ls -a
+ 1560  git remote -v
+ 1561  git push --help
+ 1562  git remote -v
+ 1563  git push origin :old_branch new_branch
+ 1564  git push origin old_branch new_branch
+ 1565  git push origin :old_branch new_branch
+ 1566  git push origin :old_branch temp
+ 1567  git push origin :old_branch new_temp
+ 1568  git push origin :old_branch new_branch
+ 1569  git remote -v
+ 1570  git status
+ 1571  git log --oneline
+ 1572  git checkout master
+ 1573  git log --oneline
+ 1574  git push origin master
+ 1575  git pull origin master
+ 1576  git push origin master
+ 1577  git branch
+ 1578  git branch -m old_branch new_branch
+ 1579  git branch
+ 1580  git push origin :old_branch
+ 1581  git push --set-upstream origin new_branch
+ 1582  git push origin :new_branch old_branch
+ 1583  history
+ 1584  git push --help
+ 1585  git branch --help
+ 1586  git push --help
+ 1587  pwd
+ 1588  git branch
+ 1589  pwd
+ 1590  ls
+ 1591  git ls-files
+ 1592  pwd
+ 1593  git ls-files
+ 1594  vi installGit.sh
+ 1595  pwd
+ 1596  ls
+ 1597  git ls-files
+ 1598  git status
+ 1599  git add installGit.sh && git commit -m "Added gitinstall.sh file"
+ 1600  pwd
+ 1601  git ls-files
+ 1602  ls
+ 1603  git status
+ 1604  ls
+ 1605  git ls-files
+ 1606  vi installGit.sh
+ 1607  cat /etc/os-release
+ 1608  grep ID /etc/os-release
+ 1609  grep ID /etc/os-release| grep -v VERSION_ID|ID_LIKE
+ 1610  grep ID /etc/os-release| egrep -v VERSION_ID|ID_LIKE
+ 1611  grep ID /etc/os-release| egrep -v 'VERSION_ID|ID_LIKE'
+ 1612  grep ID /etc/os-release| egrep -v 'VERSION_ID|ID_LIKE' | cut -d'=' -f1
+ 1613  grep ID /etc/os-release| egrep -v 'VERSION_ID|ID_LIKE' | cut -d'=' -f2
+ 1614  grep ID /etc/os-release| egrep -v 'VERSION_ID|ID_LIKE' | cut -d'=' -f2
+ 1615  vi installGit.sh
+ 1616  git status
+ 1617  git log --oneline
+ 1618  git show b6226ee
+ 1619  cat installGit.sh
+ 1620  cat -n installGit.sh
+ 1621  git status
+ 1622  ls -l installGit.sh
+ 1623  git diff installGit.sh
+ 1624  git status
+ 1625  git diff installGit.sh
+ 1626  git add installGit.sh
+ 1627  git status
+ 1628  git diff --staged installGit.sh
+ 1629  git status
+ 1630  git restore --staged installGit.sh
+ 1631  git status
+ 1632  cat installGit.sh
+ 1633  git status
+ 1634  git restore installGit.sh
+ 1635  cat installGit.sh
+ 1636  cd
+ 1637  git clone https://github.com/bhasker-manikyala/DevOpsClassCodes.git
+ 1638  pwd
+ 1639  ls
+ 1640  cd DevOpsClassCodes
+ 1641  git checkout -b my-article
+ 1642  git status
+ 1643  vi README.md
+ 1644  git status
+ 1645  git add .
+ 1646  git commit -m "Adding an article"
+ 1647  git remote
+ 1648  git remote -v
+ 1649  cd ..
+ 1650  cd edureka-project/
+ 1651  git remote
+ 1652  git remote -v
+ 1653  ls -a
+ 1654  cat .git/config
+ 1655  cd ../DevOpsClassCodes/
+ 1656  cat .git/config
+ 1657  git status
+ 1658  git remote
+ 1659  git remote -v
+ 1660  git branch
+ 1661  git push origin my-article
+ 1662  history
+edureka@kmaster:~/DevOpsClassCodes$
+
+
+
+
+
+
