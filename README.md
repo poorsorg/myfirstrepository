@@ -1,2 +1,0 @@
-# myfirstrepository
-bunch of codes   
