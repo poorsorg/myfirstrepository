@@ -5,3 +5,4 @@ class Simple{
       System.out.println("Welcome to Jenkins's online Training!!!");
    }
 }
+#java is so hard to learn
